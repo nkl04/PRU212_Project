@@ -566,6 +566,7 @@ GameObject:
   - component: {fileID: 2051833656}
   - component: {fileID: 2051833655}
   - component: {fileID: 2051833657}
+  - component: {fileID: 2051833658}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -645,6 +646,45 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 8, y: 8}
   m_UseGraphicAlpha: 1
+--- !u!114 &2051833658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051833653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 649b863c382aa64429b8c0744aa5adc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instantiateVisual: 1
+  moveSpeedLimit: 50
+  isSelected: 0
+  selectionOffset: 50
+  isDragging: 0
+  isHovering: 0
+  PointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  PointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  PointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  PointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  BeginDragEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  EndDragEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  SelectEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
