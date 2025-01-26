@@ -18,7 +18,7 @@ public class CardVisual : MonoBehaviour
 
     }
 
-    private void Initalize(Card card, int index = 0)
+    public void Initalize(Card card, int index = 0)
     {
         parentCard = card;
         cardTransform = card.transform;

@@ -7,6 +7,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 {
 
     [SerializeField] private bool instantiateVisual = true;
+    private CardVisualsHandler cardVisualsHandler;
     private Canvas canvas;
     private Image imageComponent;
     private Vector3 offset;
@@ -23,8 +24,10 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     [Header("States")]
     public bool isDragging = false;
     public bool isHovering = false;
-
     [HideInInspector] private bool wasDragged = false;
+    [Header("Visual")]
+    [SerializeField] private GameObject cardVisualPrefab;
+    [HideInInspector] public CardVisual cardVisual;
 
     [Header("Events")]
     [HideInInspector] public UnityEvent<Card> PointerEnterEvent;
@@ -38,8 +41,16 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     private void Start()
     {
         canvas = GetComponentInParent<Canvas>();
+
         imageComponent = GetComponent<Image>();
 
+        if (!instantiateVisual) return;
+
+        cardVisualsHandler = FindFirstObjectByType<CardVisualsHandler>();
+
+        cardVisual = Instantiate(cardVisualPrefab, cardVisualsHandler ? cardVisualsHandler.transform : canvas.transform).GetComponent<CardVisual>();
+
+        cardVisual.Initalize(this);
     }
 
     private void Update()
