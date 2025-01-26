@@ -44,7 +44,7 @@ public class CardVisual : MonoBehaviour
     [Header("Select Parameters")]
     [SerializeField] private float selectPunchAmount = 20;
 
-    [Header("Hober Parameters")]
+    [Header("Hoer Parameters")]
     [SerializeField] private float hoverPunchAngle = 5;
     [SerializeField] private float hoverTransition = .15f;
 
@@ -64,7 +64,7 @@ public class CardVisual : MonoBehaviour
         shadowDistance = visualShadow.localPosition;
     }
 
-    public void Initalize(Card card, int index = 0)
+    public void Initialize(Card card, int index = 0)
     {
         parentCard = card;
         cardTransform = card.transform;

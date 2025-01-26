@@ -52,7 +52,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
         cardVisual = Instantiate(cardVisualPrefab, cardVisualsHandler ? cardVisualsHandler.transform : canvas.transform).GetComponent<CardVisual>();
 
-        cardVisual.Initalize(this);
+        cardVisual.Initialize(this);
     }
 
     private void Update()
