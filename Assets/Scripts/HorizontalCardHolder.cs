@@ -13,15 +13,16 @@ public class HorizontalCardHolder : MonoBehaviour
     [SerializeField] private GameObject slotCard;
     [SerializeField] private List<Card> cardList;
     private RectTransform rectTransform;
+    private bool isCrossing = false;
 
     [Header("Spawn Data")]
-    [SerializeField] private int cardsToSpawn;
+    [SerializeField] private int cardListToSpawn;
 
     [SerializeField] private bool tweenCardReturn;
 
     private void Start()
     {
-        for (int i = 0; i < cardsToSpawn; i++)
+        for (int i = 0; i < cardListToSpawn; i++)
         {
             Instantiate(slotCard, transform);
         }
@@ -61,7 +62,85 @@ public class HorizontalCardHolder : MonoBehaviour
                 }
             }
         }
+    }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            if (hoveredCard != null)
+            {
+                Destroy(hoveredCard.transform.parent.gameObject);
+                cardList.Remove(hoveredCard);
+
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            foreach (Card card in cardList)
+            {
+                card.Deselect();
+            }
+        }
+
+        if (selectedCard == null)
+            return;
+
+        if (isCrossing)
+            return;
+
+        for (int i = 0; i < cardList.Count; i++)
+        {
+
+            if (selectedCard.transform.position.x > cardList[i].transform.position.x)
+            {
+                if (selectedCard.ParentIndex() < cardList[i].ParentIndex())
+                {
+                    Swap(i);
+                    break;
+                }
+            }
+
+            if (selectedCard.transform.position.x < cardList[i].transform.position.x)
+            {
+                if (selectedCard.ParentIndex() > cardList[i].ParentIndex())
+                {
+                    Swap(i);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void Swap(int index)
+    {
+        isCrossing = true;
+
+        Transform focusedParent = selectedCard.transform.parent;
+
+        Transform crossedParent = cardList[index].transform.parent;
+
+        cardList[index].transform.SetParent(focusedParent);
+
+        cardList[index].transform.localPosition = cardList[index].isSelected ? new Vector3(0, cardList[index].selectionOffset, 0) : Vector3.zero;
+
+        selectedCard.transform.SetParent(crossedParent);
+
+        isCrossing = false;
+
+        if (cardList[index].cardVisual == null)
+            return;
+
+        bool swapIsRight = cardList[index].ParentIndex() > selectedCard.ParentIndex();
+
+        cardList[index].cardVisual.Swap(swapIsRight ? -1 : 1);
+
+        //Updated Visual Indexes
+        foreach (Card card in cardList)
+        {
+            card.cardVisual.UpdateIndex();
+        }
     }
 
     private void CarPointerExit(Card card)

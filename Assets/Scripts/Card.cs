@@ -25,7 +25,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     [Header("States")]
     public bool isDragging = false;
     public bool isHovering = false;
-    [HideInInspector] private bool wasDragged = false;
+    [HideInInspector] public bool wasDragged = false;
 
     [Header("Visual")]
     [SerializeField] private GameObject cardVisualPrefab;
@@ -100,6 +100,19 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public float NormalizedPosition()
     {
         return transform.parent.CompareTag("Slot") ? ExtensionMethods.Remap((float)ParentIndex(), 0, (float)(transform.parent.parent.childCount - 1), 0, 1) : 0;
+    }
+
+    public void Deselect()
+    {
+        if (isSelected)
+        {
+            isSelected = false;
+
+            if (isSelected)
+                transform.localPosition += cardVisual.transform.up * 50;
+            else
+                transform.localPosition = Vector3.zero;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
