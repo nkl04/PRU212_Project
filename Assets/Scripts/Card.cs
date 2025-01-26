@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -25,6 +26,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public bool isDragging = false;
     public bool isHovering = false;
     [HideInInspector] private bool wasDragged = false;
+
     [Header("Visual")]
     [SerializeField] private GameObject cardVisualPrefab;
     [HideInInspector] public CardVisual cardVisual;
@@ -69,6 +71,9 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         }
     }
 
+    /// <summary>
+    ///  Clamp the position of the card in the screen size
+    /// </summary>
     private void ClampPosition()
     {
         Vector2 screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
@@ -106,14 +111,36 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        EndDragEvent.Invoke(this);
+
+        isDragging = false;
+
+        canvas.GetComponent<GraphicRaycaster>().enabled = true;
+
+        imageComponent.raycastTarget = true;
+
+        StartCoroutine(FrameWait());
+
+        IEnumerator FrameWait()
+        {
+            yield return new WaitForEndOfFrame();
+
+            wasDragged = false;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        PointerEnterEvent.Invoke(this);
+
+        isHovering = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        PointerExitEvent.Invoke(this);
+
+        isHovering = false;
     }
 
     public void OnPointerUp(PointerEventData eventData)

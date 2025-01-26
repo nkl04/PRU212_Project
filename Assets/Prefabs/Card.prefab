@@ -110,6 +110,8 @@ MonoBehaviour:
   selectionOffset: 50
   isDragging: 0
   isHovering: 0
+  cardVisualPrefab: {fileID: 8280524209077935197, guid: cbcd51a3bb38f9142affa4b19e2f4bbb, type: 3}
+  cardVisual: {fileID: 0}
   PointerEnterEvent:
     m_PersistentCalls:
       m_Calls: []
