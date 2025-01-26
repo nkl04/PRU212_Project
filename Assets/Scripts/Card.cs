@@ -87,6 +87,21 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         transform.position = new Vector3(clampedPosition.x, clampedPosition.y, 0);
     }
 
+    public int SiblingAmount()
+    {
+        return transform.parent.CompareTag("Slot") ? transform.parent.parent.childCount - 1 : 0;
+    }
+
+    public int ParentIndex()
+    {
+        return transform.parent.CompareTag("Slot") ? transform.parent.GetSiblingIndex() : 0;
+    }
+
+    public float NormalizedPosition()
+    {
+        return transform.parent.CompareTag("Slot") ? ExtensionMethods.Remap((float)ParentIndex(), 0, (float)(transform.parent.parent.childCount - 1), 0, 1) : 0;
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
         // on drag
@@ -145,10 +160,37 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+
+        pointerUpTime = Time.time;
+
+        PointerUpEvent.Invoke(this, pointerUpTime - pointerDownTime > 0.2f);
+
+        if (pointerUpTime - pointerDownTime > 0.2f) return;
+
+        if (wasDragged) return;
+
+        isSelected = !isSelected;
+
+        SelectEvent.Invoke(this, isSelected);
+
+        if (isSelected)
+        {
+            transform.localPosition += cardVisual.transform.up * selectionOffset;
+        }
+        else
+        {
+            transform.localPosition = Vector3.zero;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+
+        PointerEnterEvent.Invoke(this);
+
+        pointerDownTime = Time.time;
     }
 
 }

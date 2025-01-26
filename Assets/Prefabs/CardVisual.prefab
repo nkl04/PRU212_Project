@@ -337,6 +337,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentCard: {fileID: 0}
   visualShadow: {fileID: 8377014692334549999}
+  shakeParent: {fileID: 2835946216584296702}
+  tiltParent: {fileID: 6476471882114619937}
+  cardImage: {fileID: 2610239014205007982}
+  followSpeed: 25
+  rotationAmount: 70
+  rotationSpeed: 50
+  autoTiltAmount: 15
+  manualTiltAmount: 30
+  tiltSpeed: 40
+  curve: {fileID: 11400000, guid: 0180f81e6e92e2f4b9bf47fe90d27f96, type: 2}
 --- !u!223 &1432346451460586803
 Canvas:
   m_ObjectHideFlags: 0
