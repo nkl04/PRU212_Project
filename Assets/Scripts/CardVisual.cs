@@ -36,6 +36,11 @@ public class CardVisual : MonoBehaviour
         initalize = true;
     }
 
+    public void UpdateIndex()
+    {
+        transform.SetSiblingIndex(parentCard.transform.parent.GetSiblingIndex());
+    }
+
     private void OnBeginDrag(Card card)
     {
         // on begin drag
