@@ -107,9 +107,10 @@ MonoBehaviour:
   instantiateVisual: 1
   moveSpeedLimit: 50
   isSelected: 0
-  selectionOffset: 50
+  selectionOffset: 25
   isDragging: 0
   isHovering: 0
+  wasDragged: 0
   cardVisualPrefab: {fileID: 8280524209077935197, guid: cbcd51a3bb38f9142affa4b19e2f4bbb, type: 3}
   cardVisual: {fileID: 0}
   PointerEnterEvent:
