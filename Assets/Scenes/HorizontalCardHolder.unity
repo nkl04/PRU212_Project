@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 2137232811}
   - component: {fileID: 2137232810}
   m_Layer: 5
-  m_Name: HorizontalCardHolder
+  m_Name: PlayingCardHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
