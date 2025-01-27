@@ -201,7 +201,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         if (eventData.button != PointerEventData.InputButton.Left) return;
 
-        PointerEnterEvent.Invoke(this);
+        PointerDownEvent.Invoke(this);
 
         pointerDownTime = Time.time;
     }

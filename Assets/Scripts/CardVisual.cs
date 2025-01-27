@@ -16,7 +16,7 @@ public class CardVisual : MonoBehaviour
     private Vector3 rotationDelta;
 
     [Header("References")]
-    public Transform visualShadow;
+    [SerializeField] private Transform visualShadow;
     [SerializeField] private Transform shakeParent;
     [SerializeField] private Transform tiltParent;
     [SerializeField] private Image cardImage;
@@ -210,7 +210,7 @@ public class CardVisual : MonoBehaviour
         if (scaleAnimations)
             transform.DOScale(scaleOnSelect, scaleTransition).SetEase(scaleEase);
 
-        visualShadow.localPosition += (-Vector3.up * shadowOffset);// reset the pos of shadow
+        visualShadow.localPosition += -Vector3.up * shadowOffset;// reset the pos of shadow
 
         shadowCanvas.overrideSorting = false;
     }

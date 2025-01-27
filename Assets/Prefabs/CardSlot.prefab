@@ -29,7 +29,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3856817660187783337}
+  - {fileID: 6920480106538165204}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -45,7 +45,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574205532538607416}
   m_CullTransparentMesh: 1
---- !u!1001 &1035566614944278409
+--- !u!1001 &6616705525498164468
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -135,15 +135,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8854278401139984169, guid: 7f10a9b0210f68544a6154cdfb4f1814, type: 3}
       propertyPath: m_Name
-      value: Card
+      value: 'Card '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f10a9b0210f68544a6154cdfb4f1814, type: 3}
---- !u!224 &3856817660187783337 stripped
+--- !u!224 &6920480106538165204 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4312541218903152416, guid: 7f10a9b0210f68544a6154cdfb4f1814, type: 3}
-  m_PrefabInstance: {fileID: 1035566614944278409}
+  m_PrefabInstance: {fileID: 6616705525498164468}
   m_PrefabAsset: {fileID: 0}
