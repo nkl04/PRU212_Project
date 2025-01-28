@@ -230,5 +230,8 @@ public class CardVisual : MonoBehaviour
             transform.DOScale(scaleOnHover, scaleTransition).SetEase(scaleEase);
     }
 
-
+    public void DisableSelf()
+    {
+        gameObject.SetActive(false);
+    }
 }

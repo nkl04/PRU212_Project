@@ -52,7 +52,11 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
         cardVisualsHandler = FindFirstObjectByType<CardVisualsHandler>();
 
-        cardVisual = Instantiate(cardVisualPrefab, cardVisualsHandler ? cardVisualsHandler.transform : canvas.transform).GetComponent<CardVisual>();
+        cardVisual = ObjectPooler.Instance.GetObjectFromPool(cardVisualPrefab.name).GetComponent<CardVisual>();
+
+        cardVisual.transform.SetParent(cardVisualsHandler ? cardVisualsHandler.transform : canvas.transform);
+
+        cardVisual.gameObject.SetActive(true);
 
         cardVisual.Initialize(this);
     }

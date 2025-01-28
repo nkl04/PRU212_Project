@@ -25,7 +25,7 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public void RemoveCard(CardInfo cardInfo)
+    public void Remove(CardInfo cardInfo)
     {
         cardInfos.Remove(cardInfo);
     }

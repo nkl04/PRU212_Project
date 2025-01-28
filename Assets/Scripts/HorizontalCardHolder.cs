@@ -26,7 +26,9 @@ public class HorizontalCardHolder : MonoBehaviour
 
         for (int i = 0; i < cardListToSpawn; i++)
         {
-            Instantiate(slotCard, transform);
+            GameObject slotCardObj = ObjectPooler.Instance.GetObjectFromPool(slotCard.name);
+            slotCardObj.transform.SetParent(transform);
+            slotCardObj.SetActive(true);
         }
 
         rectTransform = GetComponent<RectTransform>();
@@ -71,16 +73,6 @@ public class HorizontalCardHolder : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Delete))
-        {
-            if (hoveredCard != null)
-            {
-                Destroy(hoveredCard.transform.parent.gameObject);
-                cardList.Remove(hoveredCard);
-
-            }
-        }
-
         if (Input.GetMouseButtonDown(1))
         {
             foreach (Card card in cardList)
@@ -122,9 +114,29 @@ public class HorizontalCardHolder : MonoBehaviour
     {
         //get random card from deck then remove it from deck
         CardInfo cardInfo = deck.CardInfos[UnityEngine.Random.Range(0, deck.CardInfos.Count)];
-        deck.RemoveCard(cardInfo);
+        deck.Remove(cardInfo);
         return cardInfo;
     }
+
+    public void DiscardCards()
+    {
+        foreach (Card card in cardList)
+        {
+            if (card.isSelected)
+            {
+                // Discard 
+                DiscardACard(card);
+            }
+        }
+    }
+
+    private void DiscardACard(Card card)
+    {
+        card.transform.parent.gameObject.SetActive(false);
+        cardList.Remove(hoveredCard);
+        card.cardVisual.DisableSelf();
+    }
+
     private void Swap(int index)
     {
         isCrossing = true;
@@ -186,4 +198,5 @@ public class HorizontalCardHolder : MonoBehaviour
         selectedCard = card;
     }
     #endregion
+
 }
