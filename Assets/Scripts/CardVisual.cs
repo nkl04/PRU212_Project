@@ -68,6 +68,7 @@ public class CardVisual : MonoBehaviour
     {
         parentCard = card;
         cardTransform = card.transform;
+        cardImage.sprite = card.cardInfo?.sprite;
         canvas = GetComponentInParent<Canvas>();
         shadowCanvas = visualShadow.GetComponent<Canvas>();
 

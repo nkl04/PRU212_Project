@@ -7,7 +7,7 @@ public class CardInfo : ScriptableObject
     public Suit suit;
     public Rank rank;
     public int score;
-    public Sprite visual;
+    public Sprite sprite;
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -20,7 +20,7 @@ public class CardInfo : ScriptableObject
 
         Sprite sprite = AssetDatabase.LoadAssetAtPath($"Assets/Sprites/Deck/{spriteName}.png", typeof(Sprite)) as Sprite;
 
-        visual = sprite;
+        this.sprite = sprite;
     }
 #endif
 }

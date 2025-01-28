@@ -14,14 +14,16 @@ public class HorizontalCardHolder : MonoBehaviour
     [SerializeField] private List<Card> cardList;
     private RectTransform rectTransform;
     private bool isCrossing = false;
+    private Deck deck;
 
     [Header("Spawn Data")]
     [SerializeField] private int cardListToSpawn;
-
     [SerializeField] private bool tweenCardReturn;
 
     private void Start()
     {
+        deck = FindFirstObjectByType<Deck>();
+
         for (int i = 0; i < cardListToSpawn; i++)
         {
             Instantiate(slotCard, transform);
@@ -33,6 +35,7 @@ public class HorizontalCardHolder : MonoBehaviour
 
         int cardCount = 0;
 
+        // register card event 
         foreach (Card card in cardList)
         {
             card.BeginDragEvent.AddListener(CardBeginDrag);
@@ -41,9 +44,11 @@ public class HorizontalCardHolder : MonoBehaviour
 
             card.PointerEnterEvent.AddListener(CardPointerEnter);
 
-            card.PointerExitEvent.AddListener(CarPointerExit);
+            card.PointerExitEvent.AddListener(CardPointerExit);
 
             card.name = cardCount.ToString();
+
+            card.cardInfo = GetRandomCardInfoFromDeck(deck);
 
             cardCount++;
         }
@@ -113,6 +118,13 @@ public class HorizontalCardHolder : MonoBehaviour
         }
     }
 
+    private CardInfo GetRandomCardInfoFromDeck(Deck deck)
+    {
+        //get random card from deck then remove it from deck
+        CardInfo cardInfo = deck.CardInfos[UnityEngine.Random.Range(0, deck.CardInfos.Count)];
+        deck.RemoveCard(cardInfo);
+        return cardInfo;
+    }
     private void Swap(int index)
     {
         isCrossing = true;
@@ -143,7 +155,8 @@ public class HorizontalCardHolder : MonoBehaviour
         }
     }
 
-    private void CarPointerExit(Card card)
+    #region Registered card event
+    private void CardPointerExit(Card card)
     {
         hoveredCard = null;
     }
@@ -172,4 +185,5 @@ public class HorizontalCardHolder : MonoBehaviour
     {
         selectedCard = card;
     }
+    #endregion
 }

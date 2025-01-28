@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler
 {
-
     [SerializeField] private bool instantiateVisual = true;
     private CardVisualsHandler cardVisualsHandler;
     private Canvas canvas;
     private Image imageComponent;
     private Vector3 offset;
+
+    [Header("Data")]
+    public CardInfo cardInfo;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeedLimit = 50f;
@@ -204,6 +206,11 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         PointerDownEvent.Invoke(this);
 
         pointerDownTime = Time.time;
+    }
+
+    public Card(CardInfo cardInfo)
+    {
+        this.cardInfo = cardInfo;
     }
 
 }

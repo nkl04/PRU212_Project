@@ -309,6 +309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3348677685998783662}
+  - component: {fileID: 6123551651687463160}
   m_Layer: 5
   m_Name: Deck
   m_TagString: Untagged
@@ -342,6 +343,21 @@ RectTransform:
   m_AnchoredPosition: {x: 449, y: -324}
   m_SizeDelta: {x: 189.3, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6123551651687463160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4107806660103808193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acbac7e6f66533459239034e2e48eaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardPrefab: {fileID: 8854278401139984169, guid: 7f10a9b0210f68544a6154cdfb4f1814, type: 3}
+  cardAmount: 52
+  deckInfo: {fileID: 11400000, guid: 3f81b397202feea4c89b3a6a1006a21a, type: 2}
 --- !u!1 &4219387952653511669
 GameObject:
   m_ObjectHideFlags: 0
